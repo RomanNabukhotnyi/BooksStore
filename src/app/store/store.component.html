@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand">BOOKS STORE</a>
+            <cart-summary></cart-summary>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 p-1">
+            <div class="d-grid gap-1 m-1">
+                <button class="btn btn-outline-primary" 
+                    (click)="changeGenre()">
+                    Home
+                </button>
+                <button *ngFor="let genre of genres" 
+                    class="btn btn-outline-primary" 
+                    [class.active]="genre==selectedGenre" 
+                    (click)="changeGenre(genre)">
+                    {{genre}}
+                </button>
+            </div>
+        </div>
+        <div class="col-9 p-1">
+            <div *ngFor="let book of books" class="card m-1 border-primary">
+                <h4 class="card-header">
+                    {{book.title}}
+                    <span class="float-end badge rounded-pill bg-primary">
+                        {{book.price | currency:"USD":true:"2.2-2"}}
+                    </span>
+                </h4>
+                <div class="card-text p-1">
+                    {{book.author}}
+                    <button class="btn btn-success btn-sm float-end"
+                        (click)="addBookToCart(book)">
+                        Add To Cart
+                    </button>
+                </div>
+            </div>
+            <div class="mx-1">
+                <div class="float-start">
+                    <select class="form-select" [value]="booksPerPage"
+                        (change)="changePageSize($event)">
+                        <option value="3">3 per Page</option>
+                        <option value="4">4 per Page</option>
+                        <option value="6">6 per Page</option>
+                        <option value="8">8 per Page</option>
+                    </select>
+                </div>
+                <div class="btn-group float-end">
+                    <button *counter="let page of pageCount" 
+                        (click)="changePage(page)"
+                        class="btn btn-outline-primary" 
+                        [class.active]="page==selectedPage">
+                        {{page}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
