@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="navbar navbar-dark bg-info">
+            <a class="navbar-brand">BOOKS STORE Admin</a>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col-3">
+            <div class="d-grid gap-1 m-1">
+                <button class="btn btn-outline-info" routerLink="/admin/main/books" routerLinkActive="active">
+                    Books
+                </button>
+                <button class="btn btn-outline-info" routerLink="/admin/main/orders" routerLinkActive="active">
+                    Orders
+                </button>
+                <button class="btn btn-outline-danger btn-block" (click)="logout()">
+                    Logout
+                </button>
+            </div>
+        </div>
+        <div class="col-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -17,15 +17,16 @@ export class Cart {
         this.recalculate();
     }
 
-    updateQuantity(book: Book, quantity: number) {
+    updateQuantity(book: Book, event: Event) {
+        const target = event.target as HTMLInputElement;
         const line = this.lines.find(line => line.book.id == book.id);
         if (line) {
-            line.quantity = quantity;
+            line.quantity = Number(target.value);
         }
         this.recalculate();
     }
 
-    removeLine(id: number) {
+    removeLine(id: number | undefined) {
         const index = this.lines.findIndex(line => line.book.id == id);
         this.lines.splice(index);
         this.recalculate();
@@ -42,7 +43,7 @@ export class Cart {
         this.cartPrice = 0;
         this.lines.forEach(line => {
             this.itemCount += line.quantity;
-            this.cartPrice += (line.quantity * line.book.price);
+            this.cartPrice += (line.quantity * line.book.price!);
         });
     }
 }
@@ -51,6 +52,6 @@ export class CartLine {
     constructor(public book: Book, public quantity: number) { }
 
     get lineTotal() {
-        return this.quantity * this.book.price;
+        return this.quantity * this.book.price!;
     }
 }

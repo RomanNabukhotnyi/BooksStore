@@ -22,7 +22,7 @@ export class StoreComponent {
             .slice(pageIndex, pageIndex + this.booksPerPage);
     }
 
-    get genres(): string[] {
+    get genres(): (string | undefined)[] {
         return this.repository.getGenres();
     }
 

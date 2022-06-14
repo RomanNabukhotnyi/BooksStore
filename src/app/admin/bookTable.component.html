@@ -1,0 +1,31 @@
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let b of getBooks()">
+            <td>{{b.id}}</td>
+            <td>{{b.title}}</td>
+            <td>{{b.genre}}</td>
+            <td>{{b.price | currency:"USD":"symbol":"2.2-2"}}</td>
+            <td>
+                <button class="btn btn-sm btn-warning"
+                        [routerLink]="['/admin/main/books/edit', b.id]">
+                    Edit
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="deleteBook(b.id)">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" routerLink="/admin/main/books/create">
+    Create New Book
+</button>

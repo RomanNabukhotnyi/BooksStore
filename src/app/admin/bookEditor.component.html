@@ -1,0 +1,28 @@
+<div class="bg-primary p-1" [class.bg-warning]="editing">
+    <h5>{{editing  ? "Edit" : "Create"}} Book</h5>
+</div>
+<form novalidate #form="ngForm" (ngSubmit)="save(form)">
+    <div class="form-group">
+        <label>Title</label>
+        <input class="form-control" name="title" [(ngModel)]="book.title" />
+    </div>
+    <div class="form-group">
+        <label>Genre</label>
+        <input class="form-control" name="genre" [(ngModel)]="book.genre" />
+    </div>
+    <div class="form-group">
+        <label>Author</label>
+        <textarea class="form-control" name="author" [(ngModel)]="book.author">
+        </textarea>
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input class="form-control" name="price" [(ngModel)]="book.price" />
+    </div>
+    <button type="submit" class="btn btn-primary" [class.btn-warning]="editing">
+        {{editing ? "Save" : "Create"}}
+    </button>
+    <button type="reset" class="btn btn-secondary" routerLink="/admin/main/books">
+        Cancel
+    </button>
+</form>
